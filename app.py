@@ -200,6 +200,4 @@ if news_data and news_data["status"] == "ok":
             st.divider()
 
 else:
-    st.error(
-        "Failed to fetch news. Check API key or API limits."
-    )
+    st.error("Failed to fetch news. Check API key or API limits.")
