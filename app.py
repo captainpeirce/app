@@ -204,9 +204,31 @@ if news_data and news_data["status"] == "ok":
 
 else:
     st.error("Failed to fetch news. Check API key or API limits.")
-    if page == "NBA":
+   if page == "NBA":
 
     st.title("🏀 NBA Dashboard")
+
+    from nba_api.stats.endpoints import leaguedashteamstats
+
+    team_stats = leaguedashteamstats.LeagueDashTeamStats()
+
+    df = team_stats.get_data_frames()[0]
+
+    st.subheader("NBA Team Stats")
+
+    st.dataframe(
+        df[
+            [
+                "TEAM_NAME",
+                "W",
+                "L",
+                "PTS",
+                "REB",
+                "AST"
+            ]
+        ],
+        use_container_width=True
+    )
 
     from nba_api.stats.endpoints import leaguedashteamstats
 
